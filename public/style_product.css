@@ -1,0 +1,469 @@
+:root {
+    --main-color: #4A4A4A; /* Темно-сірий */
+    --secondary-color: #E0E0E0; /* Світло-сірий */
+    --accent-color: #B03A2E; /* Червоний */
+    --text-light: #FFFFFF; /* Білий */
+    --text-dark: #333333; /* Темно-сірий текст */
+    --hover-gray: #C0C0C0; /* Світліший сірий */
+}
+
+/* Стилі для модального вікна */
+#productModal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5); /* Фон */
+    backdrop-filter: blur(10px); /* Ефект розмиття */
+    z-index: 1000;
+    -webkit-backdrop-filter: blur(10px); /* Для Safari */
+
+}
+
+#productModal .modal-content_2 {
+    background: white;
+    margin: auto;
+    width: 900px;
+    height: 95%;    
+    position: relative;
+    border-radius: 10px ;
+    overflow-y: auto;
+}
+
+/* Прокрутка для всього модального вікна */
+.modal-content_2::-webkit-scrollbar {
+    width: 0;
+}
+
+
+.header_product {
+    width: 100%;
+    height: 60px;
+    display: flex; 
+    align-items: center; 
+    justify-content: space-between; 
+    background-color: var(--text-dark);
+    border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+    padding: 0 20px; 
+    box-sizing: border-box; 
+}
+
+#productName {
+    color: var(--text-light);
+    margin: 0; /* Вилучення зайвих відступів */
+    text-align: center; /* Вирівнювання тексту (за потреби) */
+    font-size: 1.2rem; /* Розмір шрифту */
+}
+
+#closeProductModal {
+    font-size: 1.5rem;
+    cursor: pointer;
+    padding: 0 10px;
+    border-radius: 10px;
+    border: 1px solid var(--accent-color);
+    background-color: var(--accent-color);
+    color: var(--text-light);
+}
+
+#closeProductModal:hover {
+    box-shadow: 0 0 15px var(--accent-color);
+    transition: box-shadow 0.3s ease, transform 0.1s ease;
+    transform: scale(1.1);
+}
+
+
+.informationProduct{
+    
+    display: flex; 
+    padding:  0 20px 20px 20px;
+    /* justify-content: space-between; */
+    height: 400px;
+}
+
+
+.information{
+    height: 350px;
+    width: 40%;
+    border-left: 2px solid var(--accent-color);
+    padding: 20px 0 0 20px;
+    margin-left: 20px;
+}
+
+
+#productModal .availability {
+    width: 110px;
+    background-color: #4caf4f44;
+    border-radius: 5px;
+    font-size: 14px;
+    color: #4caf50; /* Зелений колір */
+    font-weight: bold;
+    margin-bottom: 10px;
+    text-align: center; /* Вирівнювання по лівому краю */
+
+}
+
+#productPrice {
+    font-size: 25px;
+    font-weight: 600;
+    color: #333;
+}
+
+
+
+
+/*  ------------------------------------------------------------
+Контейнер для зображення */
+#productGallery {
+    width: 450px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    text-align: center;
+    padding-top: 20px;
+}
+
+/* Зображення */
+#productImage {
+    max-width: 500px;
+    max-height: 500px;
+    user-select: none;
+    transition: transform 0.3s ease;
+    z-index: 1;
+}
+
+#thumbnails {
+    display: flex;
+    background-color: white;
+    flex-direction: column;
+    gap: 10px;
+    overflow: hidden;
+    z-index: 1111;
+    padding: 5px 20px 0 0;
+
+}
+
+#thumbnails img {
+    width: 70px;
+    height: 70px;
+    object-fit: cover;
+    cursor: pointer;
+    opacity: 0.5;
+    transition: opacity 0.3s, transform 0.3s;
+}
+
+#thumbnails img.active,
+#thumbnails img:hover {
+    opacity: 1;
+    transform: scale(1.1);
+}
+
+
+
+/*------------------------------------------------------*/
+
+
+#productModal button {
+    position: relative;
+    width: 230px; /* Фіксована ширина */
+    width: 100%; /* Максимальна ширина для адаптивності */
+    height: 50px;
+    display: flex; /* Включаємо flexbox для вирівнювання */
+    align-items: center; /* Вирівнювання по вертикалі */
+    justify-content: center; /* Вирівнювання по горизонталі */
+    background: linear-gradient(135deg, var(--accent-color), #ff5733); /* Градієнтний фон */
+    color: #ffffff; /* Білий текст */
+    font-size: 18px;
+    font-weight: 600;
+    border: none; /* Прибираємо рамки */
+    border-radius: 12px; /* Більш плавне закруглення */
+    cursor: pointer;
+    transition: all 0.3s ease; /* Плавний перехід для всіх властивостей */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Легка тінь */
+}
+
+#productModal button:hover {
+    background: linear-gradient(135deg, #ff5733, var(--accent-color)); /* Зміна градієнта при наведенні */
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2); /* Збільшена тінь */
+    transform: scale(1.05); /* Легке збільшення */
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+
+
+#productModal button::after {
+    content: "Купити"; /* Напис всередині кнопки */
+    font-size: 18px;
+    font-weight: 600;   
+    color: rgba(255, 255, 255, 0.9); /* Трохи прозорий текст */
+    position: absolute;
+    top: 50%; /* Центруємо текст по вертикалі */
+    left: 50%; /* Центруємо текст по горизонталі */
+    transform: translate(-50%, -50%); /* Вирівнюємо до центру */
+    pointer-events: none; /* Забороняємо взаємодію з текстом */
+    transition: color 0.3s ease, transform 0.2s ease; /* Плавний перехід кольору */
+}
+
+#productModal button:hover::after {
+    color: #fff; /* Яскравий білий текст */
+    transform: translate(-50%, -50%) scale(1.1); /* Легке збільшення тексту */
+}
+
+
+
+
+
+
+
+
+/* Якщо є зображення всередині кнопки */
+#productModal button img {
+    max-width: 40px; /* Розмір зображення */
+    max-height: 40px;
+    margin-right: 40%; /* Відступ між зображенням і текстом */
+}
+
+
+/* Додаткові стилі для модального вікна */
+#productModal .modal-content {
+    width: 80%;
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: white;
+    border-radius: 10px;
+}
+
+#productModal img {
+    max-width: 100%;
+    height: auto;
+}
+
+
+/* Вихід вліво */
+@keyframes slideOutLeft {
+    from {
+        transform: translateX(0);
+    }
+    to {
+        transform: translateX(-100%);
+    }
+}
+.slideOutLeft {
+    animation: slideOutLeft 0.3s forwards;
+}
+
+/* Вихід вправо */
+@keyframes slideOutRight {
+    from {
+        transform: translateX(0);
+    }
+    to {
+        transform: translateX(100%);
+    }
+}
+.slideOutRight {
+    animation: slideOutRight 0.3s forwards;
+}
+
+/* Вхід зліва */
+@keyframes slideInLeft {
+    from {
+        transform: translateX(-100%);
+    }
+    to {
+        transform: translateX(0);
+    }
+}
+.slideInLeft {
+    animation: slideInLeft 0.3s forwards;
+}
+
+/* Вхід справа */
+@keyframes slideInRight {
+    from {
+        transform: translateX(100%);
+    }
+    to {
+        transform: translateX(0);
+    }
+}
+.slideInRight {
+    animation: slideInRight 0.3s forwards;
+}
+
+
+/* Заголовок для опису товару */
+.description {
+    margin-top: -10px;
+    width: 95%;
+    font-size: 24px; /* Розмір шрифту заголовка */
+    font-weight: bold; /* Жирний текст */
+    text-transform: uppercase; /* Усі літери великі */
+    color: var(--text-dark); /* Акцентний синій колір */
+    padding: 0 0 5px 15px; /* Відступ знизу */
+    border-bottom: 2px solid var(--accent-color); /* Лінія під заголовком */
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; /* Сучасний шрифт */
+    z-index: 1111;
+}
+
+/* Стилізація тексту опису товару */
+#productDescription {
+    font-size: 16px; /* Розмір тексту опису */
+    line-height: 1.6; /* Міжрядковий інтервал для зручності читання */
+    color: #333; /* Основний текст темно-сірого кольору */
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; /* Сучасний шрифт */
+    background-color: #f9f9f9; /* Світлий фон для виділення опису */
+    padding: 15px; /* Внутрішній відступ */
+    border-radius: 8px; /* Закруглення кутів */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Легка тінь для виділення */
+    margin-bottom: 20px; /* Відступ знизу */
+}
+
+/* Адаптивність для мобільних пристроїв */
+@media (max-width: 600px) {
+    .description {
+        font-size: 20px; /* Зменшений розмір заголовка */
+    }
+
+    #productDescription {
+        font-size: 14px; /* Зменшений текст опису */
+        padding: 10px; /* Менший відступ для мобільних */
+    }
+}
+
+/*-------------------------------------------------------*/
+/* Загальні стилі таблиці */
+.product-specs {
+    width: 95%;
+    border-collapse: collapse;
+    margin: auto;
+    margin-bottom: 20px;
+    font-size: 16px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    color: var(--text-dark);
+    background-color: var(--secondary-color);
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.389);
+}
+
+/* Заголовки таблиці */
+.product-specs thead th {
+    background: linear-gradient(90deg, var(--main-color), #6E6E6E);
+    color: var(--text-light);
+    text-align: left;
+    padding: 12px 15px;
+    font-weight: 600;
+    text-transform: uppercase;
+    border-bottom: 2px solid var(--hover-gray);
+    position: sticky;
+    top: 0; /* Фіксує заголовок при прокрутці */
+    z-index: 1;
+}
+
+/* Рядки таблиці */
+.product-specs tbody tr {
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.product-specs tbody tr:nth-child(even) {
+    background-color: var(--hover-gray);
+}
+
+/* Ефекти наведення на рядок */
+.product-specs tbody tr:hover {
+    background-color: rgba(176, 58, 46, 0.1);
+    transform: scale(1.01); /* Легке збільшення */
+    cursor: pointer;
+}
+
+/* Комірки таблиці */
+.product-specs td,
+.product-specs th {
+    padding: 8px 20px;
+    text-align: left;
+    border-right: 1px solid var(--hover-gray);
+}
+
+/* Видалення останнього бордера */
+.product-specs td:last-child,
+.product-specs th:last-child {
+    border-right: none;
+}
+
+
+/* Адаптивність таблиці */
+@media (max-width: 850px) {
+    #productModal .modal-content_2 {
+        height: 100%;
+        width: 100%;
+        border-radius: 0;
+    }
+    .informationProduct{
+        flex-direction: column; /* Розташування по вертикалі */
+        align-items: center;
+        height: 85%;
+    }
+    #thumbnails {
+        display: none;
+    }
+    .information {
+        width: 100%;
+        height: 180px;
+        /* border-top: 2px solid var(--accent-color); */
+        border-left: none;
+        margin: 0;
+        padding-right: 20px;
+    }
+    #productModal button {
+        width: 100%;
+    }
+    #productGallery {
+        width: 400px;
+        height: 400px;
+        padding-top: 0;
+       
+    }
+    
+}
+
+
+
+/* Модальне вікно для повноекранного зображення */
+.fullscreen-modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.8);
+    justify-content: center;
+    align-items: center;
+    z-index: 2000;
+    cursor: pointer;
+}
+
+.fullscreen-modal img {
+    max-width: 90%;
+    max-height: 90%;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+    animation: fadeIn 0.3s ease-in-out;
+}
+
+/* Анімація появи */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: scale(0.9);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+

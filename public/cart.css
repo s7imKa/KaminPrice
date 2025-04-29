@@ -1,0 +1,320 @@
+/*--------------------------------- Модальне вікно корзини ------------------------------------------------------*/
+
+:root {
+    --main-color: #4A4A4A; /* Темно-сірий */
+    --secondary-color: #E0E0E0; /* Світло-сірий */
+    --accent-color: #B03A2E; /* Червоний */
+    --text-light: #FFFFFF; /* Білий */
+    --text-dark: #333333; /* Темно-сірий текст */
+    --highlight-green: #27AE60; /* Зелений акцент */
+    --highlight-orange: #FF6600; /* Помаранчевий акцент */
+    --hover-orange: #E64A19; /* Помаранчевий при наведенні */
+    --hover-red: #E53935; /* Червоний при наведенні */
+}
+
+
+.modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5); /* Фон */
+    backdrop-filter: blur(10px); /* Ефект розмиття */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+    text-align: center;
+    -webkit-backdrop-filter: blur(10px); /* Для Safari */
+}
+
+.modal-content {
+    width: 100vh;
+    max-height: 100vh; /* Обмежуємо висоту до 80% вікна браузера */
+    overflow-y: auto; /* Дозволяємо вертикальну прокрутку */
+    padding: 20px;
+    text-align: center;
+    background-color: var(--secondary-color); /* Світло-сірий фон */
+    color: var(--text-dark);
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.434);
+    
+
+}
+
+.cart-item {
+    display: flex;
+    align-items: center;
+    box-shadow: 0 6px 0 14px var(--main-color);
+}
+
+.cart-item-image {
+    width: 50px;
+    height: 50px;
+    object-fit: cover;
+    margin-right: 10px;
+    border-radius: 5px;
+}
+
+.cart-item-info {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.cart-item-name {
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+.cart-item-price {
+    color: var(--text-dark);
+}
+
+.removeItem {
+    background: none;
+    border: none;
+    color: var(--accent-color); /* Червоний акцент */
+    font-size: 20px;
+    cursor: pointer;
+    margin-left: 10px;
+}
+.removeItem:hover {
+    color: #A42A1E; /* Темніший червоний для hover */
+}
+
+/* Приховуємо колесико */
+.modal-content::-webkit-scrollbar {
+    
+    width: 0; /* Приховуємо скролбар в браузерах на основі WebKit (Chrome, Edge, Safari) */
+}
+
+.modal-content {
+    
+    -ms-overflow-style: none; /* Приховуємо скролбар у браузері Internet Explorer */
+    scrollbar-width: none;   /* Приховуємо скролбар у Firefox */
+}
+
+.modal-content h3, .modal-content h4 {
+    margin: 0 0 10px 0;
+    color: #333; /* Темний текст */
+    font-weight: bold;
+}
+
+#totalPrice {
+    font-size: 20px;
+    font-weight: bold;
+    color: var(--accent-color); /* Червоний для загальної суми */
+}
+
+#cartItems {
+    list-style: none;
+    padding: 0;
+    margin: 20px 0;
+    text-align: left;
+    padding-left: 5px;
+
+}
+
+#cartItems li {
+    margin: 10px 0; /* Збільшено відступ між товарами */
+    padding: 10px; /* Додаткові внутрішні відступи */
+    background-color: var(--secondary-color); /* Світло-сірий фон для елементів */
+    border-radius: 8px; /* Округлі краї */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Легка тінь */
+}
+
+/* Стиль форми доставки */
+/* Стиль для форми та інпутів */
+form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+/* Групування input в два стовпці */
+.form-row {
+    display: flex;
+    gap: 15px;
+    width: 100%; /* Гарантуємо, що контейнер займає всю ширину */
+}
+
+.form-group {
+    flex: 1; /* Розподіляє простір порівну між інпутами */
+    display: flex;
+    flex-direction: column;
+}
+
+/* Стилізація для інпутів */
+input {
+    padding: 10px;
+    border: 1px solid rgba(129, 129, 129, 0.399); /* Основний темно-сірий */
+    color: var(--text-dark);
+    border-radius: 7px;
+    font-size: 14px;
+    width: 100%; /* Задаємо інпутам 100% ширини */
+    box-sizing: border-box; /* Враховуємо padding і border в загальній ширині */
+}
+
+/* Вигляд при фокусі на інпуті */
+input:focus {
+    border-color: var(--accent-color); /* Червоний акцент */
+    outline: none;
+}
+
+input::placeholder {
+    font-size: 14px;
+    color: rgba(73, 73, 73, 0.822); /* Світло-сірий */
+}
+
+/* Обгортка для кнопок */
+.button-container {
+    display: flex;
+    flex-direction: row; /* Розміщуємо кнопки по горизонталі */
+    gap: 15px; /* Відстань між кнопками */
+    width: 100%;
+    justify-content: space-between; /* Розподіляємо кнопки по ширині */
+    padding-top: 10px;
+    background-color: var(--secondary-color); /* Світло-сірий фон */
+    color: var(--text-dark); /* Темний текст */
+}
+
+/* Кнопка для оформлення замовлення */
+#sendOrder {
+    padding: 15px;
+    font-size: 18px;
+    background-color: var(--accent-color); /* Червоний фон */
+    border: none;
+    color: white;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    width: 48%; /* Ширина кнопки - 48%, щоб залишити місце для другої кнопки */
+}
+
+#sendOrder:hover {
+    background-color: #A42A1E; /* Темніший червоний */
+}
+
+/* Кнопка для закриття модального вікна */
+#closeModal {
+    padding: 15px;
+    font-size: 18px;
+    background-color: var(--main-color); /* Темно-сірий */
+    border: 1px solid var(--main-color);
+    color: var(--text-light); /* Білий текст */
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    width: 48%; /* Ширина кнопки - 48%, щоб залишити місце для першої кнопки */
+    text-align: center;
+}
+
+#closeModal:hover {
+    border: 1px solid rgba(0, 0, 0, 0.164);
+    background-color: var(--hover-gray); /* Світліший сірий */
+    color: var(--text-dark); /* Темний текст */
+}
+
+
+.hidden {
+    display: none;
+}
+
+#successMessage {
+    color: green;
+    font-weight: bold;
+    text-align: center;
+    margin-top: 20px;
+}
+
+#successMessage.hidden {
+    display: none;
+}
+
+/* CSS для кнопки та анімації: */
+
+
+/* Кнопка для видалення товару у вигляді хрестика */
+button.removeItem {
+    background-color: transparent; /* Прозорий фон */
+    color: #000000; /* Змінюємо колір при наведенні */
+    float: right;
+    padding: 0;
+    padding-left: 5%;
+    border: none;
+    cursor: pointer;
+    font-size: 25px; /* Розмір хрестика */
+    line-height: 1;
+    margin-left: 10px;
+}
+
+button.removeItem:hover {
+    color: var(--accent-color); /* Колір хрестика */
+}
+
+
+
+.cart-item-quantity {
+    display: inline-flex;
+    align-items: center;
+    border: 1px solid #00000047; /* Тонка рамка */
+    border-radius: 6px;
+    overflow: hidden;
+    height: 30px;
+    width: 80px; /* Ширина компонента */
+    background-color: #ffffff; /* Білий фон */
+}
+
+.quantity-decrease,
+.quantity-increase {
+    width: 50px; /* Розмір кнопок */
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 14px; /* Розмір шрифту */
+    border: none; /* Без рамок */
+    background-color: var(--secondary-color); /* Світло-сірий фон */
+    cursor: pointer;
+    color: var(--main-color); /* Темно-сірий текст */
+    font-weight: 600;
+    transition: background-color 0.2s ease;
+}
+
+.quantity-decrease:hover,
+.quantity-increase:hover {
+    background-color: var(--hover-gray); /* Світліший сірий для hover */
+}
+
+.quantity-input {
+    width: 40px; /* Компактна ширина */
+    text-align: center;
+    border: none; /* Без рамки */
+    font-size: 14px; /* Розмір тексту */
+    color: #333; /* Колір тексту */
+    background-color: transparent; /* Прозорий фон */
+}
+
+.quantity-input::-webkit-inner-spin-button,
+.quantity-input::-webkit-outer-spin-button {
+    -webkit-appearance: none; /* Видалення стрілок у Chrome/Safari */
+    margin: 0;
+}
+ 
+@media (max-width: 768px) {
+    button.removeItem {
+        padding-left: 0%;
+    }
+    .cart-item-quantity {
+        
+        width: 70px; /* Ширина компонента */
+    }
+    .quantity-decrease,
+    .quantity-increase {
+        width: 15px; /* Розмір кнопок */
+        height: 40px;
+    }
+  
+} 
