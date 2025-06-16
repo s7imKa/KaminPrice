@@ -137,16 +137,17 @@
 
 #thumbnails {
     display: flex;
-    background-color: white;
+    background-color: rgba(255, 255, 255, 0.26);
     flex-direction: column;
     gap: 10px;
-    overflow: hidden;
+    /* overflow: hidden; */
     z-index: 1111;
     padding: 5px 20px 0 0;
 
 }
 
 #thumbnails img {
+    border-radius: 6px;
     width: 70px;
     height: 70px;
     object-fit: cover;
@@ -159,6 +160,7 @@
 #thumbnails img:hover {
     opacity: 1;
     transform: scale(1.1);
+
 }
 
 
@@ -415,7 +417,9 @@
         flex-wrap: nowrap;   /* Не переносити на новий рядок */
         justify-content: center;
         gap: 28px;
-        margin-top: 12px;
+        margin: 15px;
+        padding-bottom: 15px;
+        
     }
 
     #thumbnails img {
