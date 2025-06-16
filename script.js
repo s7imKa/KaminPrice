@@ -601,3 +601,41 @@ updateCartCount();
 // Оновлення кошика при завантаженні сторінки
 updateCartDisplay();
 
+
+// ...existing code...
+
+function openProductModal(product) {
+    const modal = document.getElementById('productModal');
+    // ...заповнення інформації про товар...
+    modal.style.display = 'flex';
+    document.body.style.overflow = 'hidden';
+}
+
+function closeProductModal() {
+    const modal = document.getElementById('productModal');
+    modal.style.display = 'none';
+    document.body.style.overflow = '';
+}
+
+function initProductModal() {
+    const modal = document.getElementById('productModal');
+    // Закриття по кліку на вільний простір (фон)
+    modal.addEventListener('mousedown', function(e) {
+        if (e.target === modal) {
+            closeProductModal();
+        }
+    });
+
+    // Закриття по Escape
+    document.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape' && modal.style.display === 'flex') {
+            closeProductModal();
+        }
+    });
+}
+
+document.addEventListener('DOMContentLoaded', function() {
+    initProductModal();
+});
+
+//
